@@ -3,8 +3,8 @@ import xgboost as xgb
 import pickle
 import csv
 
-final_train_data = pd.read_csv('final_train.csv')
-final_test_data = pd.read_csv('final_test.csv')
+final_train_data = pd.read_csv('FinalDataset/final_train.csv')
+final_test_data = pd.read_csv('FinalDataset/final_test.csv')
 
 n_building = final_train_data.shape[0]
 
@@ -50,7 +50,8 @@ def train_classifier(clf, X_train, y_train):
   start = time()
   clf.fit(X_train, y_train)
   end = time()
-  pickle.dump(clf, open('trained-model.dat', 'wb'))
+  with open('FinalDataset/trained-model.dat', 'wb') as model_f:
+    pickle.dump(clf, model_f)
   print ('Trained model in {:.4f} seconds'.format(end-start))
 
 
