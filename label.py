@@ -3,9 +3,10 @@ import pickle
 import csv
 from time import time
 
-model = pickle.load(open('trained-model.dat', 'rb'))
+with open('FinalDataset/trained-model.dat', 'rb') as model_f:
+  model = pickle.load(model_f)
 
-test_data = pd.read_csv('final_test.csv')
+test_data = pd.read_csv('FinalDataset/final_test.csv')
 building_ids = list(test_data['building_id'].values)
 
 test_data = test_data.drop(['building_id'], 1)
@@ -39,7 +40,7 @@ def predict_labels(features):
 
 predict_result = predict_labels(test_data)
 
-with open('result.csv', 'w') as output_f:
+with open('FinalDataset/result.csv', 'w') as output_f:
   csvfw = csv.writer(output_f, dialect='excel')
   data = [[building_ids[x],predict_result[x]] for x in range(len(predict_result))]
   csvfw.writerows([['building_id', 'damage_grade']] + data)

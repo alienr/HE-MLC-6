@@ -4,19 +4,19 @@ from sklearn import preprocessing
 
 le = preprocessing.LabelEncoder()
 
-train_csv = csv.reader(open('Dataset/train.csv'), dialect='excel')
-test_csv = csv.reader(open('Dataset/test.csv'), dialect='excel')
-
-
-train_csv_header = next(train_csv)
-test_csv_header = next(test_csv)
-
-train_csv_data = [_ for _ in train_csv]
+with open('Dataset/train.csv') as train_f:
+  train_csv = csv.reader(train_f, dialect='excel')
+  train_csv_header = next(train_csv)
+  train_csv_data = [_ for _ in train_csv]
 for row in train_csv_data:
   if row[12] == '':
     row[12] = 0
 
-test_csv_data = [_ for _ in test_csv]
+
+with open('Dataset/test.csv') as test_f:
+  test_csv = csv.reader(test_f, dialect='excel')
+  test_csv_header = next(test_csv)
+  test_csv_data = [_ for _ in test_csv]
 for row in test_csv_data:
   if row[11] == '':
     row[11] = 0
@@ -53,11 +53,10 @@ cleaned_test_csv.writerows(cleaned_test_csv_data)
 train_csv_f.close()
 test_csv_f.close()
 
-ownership_csv = csv.reader(open('Dataset/Building_Ownership_Use.csv'), dialect='excel')
-
-ownership_csv_header = next(ownership_csv)
-
-ownership_csv_data = [_ for _ in ownership_csv]
+with open('Dataset/Building_Ownership_Use.csv') as ownership_f:
+  ownership_csv = csv.reader(ownership_f, dialect='excel')
+  ownership_csv_header = next(ownership_csv)
+  ownership_csv_data = [_ for _ in ownership_csv]
 for row in ownership_csv_data:
   for idx, col in enumerate(row):
     if col == '':
