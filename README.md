@@ -6,6 +6,8 @@ for more details, please check this link https://www.hackerearth.com/challenge/c
   * Clone repo first
   * cd HE-MLC-6
   * mkdir Dataset 
+    * Download Dataset from above hackerearth contest link
+    * put all csv files (train.csv, test.csv, Building_Ownership_Use.csv, Building_Structure.csv) in Dataset Directory
   * mkdir CleanedDataset
   * mkdir FinalDataset
   * python clean_data.py
